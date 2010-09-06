@@ -4,8 +4,8 @@ Donate link: http://coffee2code.com/donate
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
 Requires at least: 2.6
 Tested up to: 3.0.1
-Stable tag: 1.5
-Version: 1.5
+Stable tag: 1.6
+Version: 1.6
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -59,7 +59,7 @@ Try:
 * Only output CSS on the add/edit post/page pages
 * Remove all references to $for (which was context variable that lingered from former rte popup)
 * Remove JavaScript related to inserting text into editor and just use send_to_editor()
-* Change the "Toggle more?" link to "See more"/"See less" (JavaScript toggles between the two as appropriate)
+* Change the 'Toggle more?' link to 'See more'/'See less' (JavaScript toggles between the two as appropriate)
 * Move hooking of actions out of constructor and into class's admin_init()
 * Rename add_css() to add_admin_css()
 * Assign object instance to global variable, $c2c_html_special_characters_helper, to allow for external manipulation
@@ -68,7 +68,7 @@ Try:
 * Note compatibility with WP 3.0+
 * Minor code reformatting (spacing)
 * Remove documentation and instructions from top of plugin file (all of that and more are contained in readme.txt)
-* Add PHPDoc
+* Add PHPDoc documentation
 * Add package info to top of file
 * Update copyright date
 * Add Upgrade Notice section to readme.txt
