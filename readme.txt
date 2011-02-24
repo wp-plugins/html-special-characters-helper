@@ -3,9 +3,9 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
 Requires at least: 2.6
-Tested up to: 3.0.1
-Stable tag: 1.6
-Version: 1.6
+Tested up to: 3.1
+Stable tag: 1.7
+Version: 1.7
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -17,6 +17,8 @@ Admin widget on the Write Post page for inserting HTML encodings of special char
 The admin widget is labeled "HTML Special Characters" and is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
+
+Links: [Plugin Homepage]:(http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Author Homepage]:(http://coffee2code.com)
 
 
 == Installation ==
@@ -52,6 +54,15 @@ Try:
 
 
 == Changelog ==
+
+= 1.7 =
+* Switch from object instantiation to direct class invocation
+* Explicitly declare all functions public|protected static and class variable public static
+* Output CSS statements in a collapsed, one-line per block format
+* Rename class function admin_init() to do_init()
+* Documentation tweaks
+* Note compatibility through WP 3.1+
+* Update copyright date (2011)
 
 = 1.6 =
 * Extract all inline JavaScript into add_admin_js() and output via admin_print_footer_scripts action
@@ -91,6 +102,9 @@ Try:
 
 
 == Upgrade Notice ==
+
+= 1.7 =
+Minor update: implementation changes; noted compatibility with WP 3.1+ and updated copyright date.
 
 = 1.6 =
 Recommended major compatibility update. Highlights: JS/CSS handling tweaks; misc non-functionality tweaks; noted compatibility with WP 3.0+.

@@ -2,26 +2,30 @@
 /**
  * @package HTML_Special_Characters_Helper
  * @author Scott Reilly
- * @version 1.6
+ * @version 1.7
  */
 /*
 Plugin Name: HTML Special Characters Helper
-Version: 1.6
+Version: 1.7
 Plugin URI: http://coffee2code.com/wp-plugins/html-special-characters-helper/
 Author: Scott Reilly
 Author URI: http://coffee2code.com
 Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
-Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+.
+Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+, 3.1+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
 =>> Or visit: http://wordpress.org/extend/plugins/html-special-characters-helper/
 
+TODO:
+	* Localize
+	* Front-end widget to facilitate use in comments
+
 */
 
 /*
-Copyright (c) 2007-2010 by Scott Reilly (aka coffee2code)
+Copyright (c) 2007-2011 by Scott Reilly (aka coffee2code)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
 files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
@@ -39,15 +43,15 @@ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 if ( is_admin() && !class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
 
 class c2c_HTMLSpecialCharactersHelper {
-	var $title = 'HTML Special Characters';
+	public static $title = 'HTML Special Characters';
 
 	/**
 	 * Constructor
 	 *
 	 * @return void
 	 */
-	function c2c_HTMLSpecialCharactersHelper() {
-		add_action( 'admin_init', array( &$this,'admin_init' ) );
+	public static function init() {
+		add_action( 'admin_init', array( __CLASS__, 'do_init' ) );
 	}
 
 	/**
@@ -55,14 +59,14 @@ class c2c_HTMLSpecialCharactersHelper {
 	 *
 	 * @return void
 	 */
-	function admin_init() {
+	public static function do_init() {
 		global $pagenow;
 		if ( in_array( $pagenow, array( 'page.php', 'page-new.php', 'post.php', 'post-new.php' ) ) ) {
-			add_action( 'admin_head', array( &$this, 'insert_admin_css' ) );
-			add_action( 'admin_print_footer_scripts', array( &$this, 'insert_admin_js' ) );
+			add_action( 'admin_head', array( __CLASS__, 'insert_admin_css' ) );
+			add_action( 'admin_print_footer_scripts', array( __CLASS__, 'insert_admin_js' ) );
 		}
-		add_meta_box( 'htmlspecialchars', $this->title, array( &$this, 'add_meta_box' ), 'page', 'side' );
-		add_meta_box( 'htmlspecialchars', $this->title, array( &$this, 'add_meta_box' ), 'post', 'side' );
+		add_meta_box( 'htmlspecialchars', self::$title, array( __CLASS__, 'add_meta_box' ), 'page', 'side' );
+		add_meta_box( 'htmlspecialchars', self::$title, array( __CLASS__, 'add_meta_box' ), 'post', 'side' );
 	}
 
 	/**
@@ -71,7 +75,7 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * @param string|null $category (optional) The name of the sub-category of codes to return. Default of null returns all
 	 * @return array Array of HTML special characters
 	 */
-	function html_special_characters( $category = null ) {
+	public static function html_special_characters( $category = null ) {
 		$codes = array(
 			'common' => array(
 				'&copy;' => 'copyright sign',
@@ -279,8 +283,8 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * the action sends over multiple arguments that we don't want.  Since show_html_special_characters() also calls
 	 * show_html_special_characters_content() we can't just have it ignore arguments
 	 */
-	function add_meta_box() {
-		$this->show_html_special_characters_content();
+	public static function add_meta_box() {
+		self::show_html_special_characters_content();
 	}
 
 	/**
@@ -289,8 +293,8 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * @param bool $echo (optional) Echo the output?  Default is true.
 	 * @return string The listing
 	 */
-	function show_html_special_characters_content( $echo = true ) {
-		$codes = $this->html_special_characters();
+	protected static function show_html_special_characters_content( $echo = true ) {
+		$codes = self::html_special_characters();
 		$innards = '';
 		$moreinnards = "<dl id='morehtmlspecialcharacters'>";
 		$i = 0;
@@ -329,11 +333,12 @@ HTML;
 	 *
 	 * @return void (Text is echoed)
 	 */
-	function show_html_special_characters() {
-		$innards = $this->show_html_special_characters_content( false );
+	public static function show_html_special_characters() {
+		$innards = self::show_html_special_characters_content( false );
+		$title = self::$title;
 		echo <<<HTML
 		<fieldset id="htmlspecialcharacterhelper" class="dbx-box">
-			<h3 class="dbx-handle">{$this->title}</h3>
+			<h3 class="dbx-handle">{$title}</h3>
 			<div class="dbx-content">
 				$innards
 			</div>
@@ -347,25 +352,14 @@ HTML;
 	 *
 	 * @return void (Text is echoed)
 	 */
-	function insert_admin_css() {
+	public static function insert_admin_css() {
 		echo <<<HTML
 		<style type="text/css">
-			.htmlspecialcharacter acronym {
-				margin:0.1em 0.5em 0.1em 0;
-				cursor:pointer;
-			}
-			.htmlspecialcharacter a, #morehtmlspecialcharacters dt {
-				font-size:xx-small;
-			}
-			#morehtmlspecialcharacters dd {
-				margin-left:6px;
-			}
-			#htmlhelperhelp {
-				font-size:x-small; display:none;
-			}
-			#morehtmlspecialcharacters, #htmlhelper_less {
-				display:none;
-			}
+			.htmlspecialcharacter acronym { margin:0.1em 0.5em 0.1em 0; cursor:pointer; }
+			.htmlspecialcharacter a, #morehtmlspecialcharacters dt { font-size:xx-small; }
+			#morehtmlspecialcharacters dd { margin-left:6px; }
+			#htmlhelperhelp { font-size:x-small; display:none; }
+			#morehtmlspecialcharacters, #htmlhelper_less { display:none; }
 		</style>
 
 HTML;
@@ -376,7 +370,7 @@ HTML;
 	 *
 	 * @return void (Text is echoed)
 	 */
-	function insert_admin_js() {
+	public static function insert_admin_js() {
 		echo <<<JS
 		<script type="text/javascript">
 		jQuery(document).ready(function($) {
@@ -394,7 +388,7 @@ JS;
 
 } // end c2c_HTMLSpecialCharactersHelper
 
-$GLOBALS['c2c_html_special_characters_helper'] = new c2c_HTMLSpecialCharactersHelper();
+c2c_HTMLSpecialCharactersHelper::init();
 
 endif; // end if !class_exists()
 
