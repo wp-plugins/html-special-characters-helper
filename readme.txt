@@ -3,9 +3,9 @@ Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
 Requires at least: 2.6
-Tested up to: 3.1
-Stable tag: 1.7
-Version: 1.7
+Tested up to: 3.2
+Stable tag: 1.7.1
+Version: 1.7.1
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -18,7 +18,7 @@ The admin widget is labeled "HTML Special Characters" and is present in the admi
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
-Links: [Plugin Homepage]:(http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Author Homepage]:(http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -40,6 +40,7 @@ It is in the sidebar, most likely at the sidebar's bottom.
 = Have any references? =
 
 Try:
+
 * http://www.w3schools.com/tags/ref_entities.asp
 * http://tlt.psu.edu/suggestions/international/web/codehtml.html
 * http://wdvl.internet.com/Authoring/HTML/Entities/
@@ -53,7 +54,47 @@ Try:
 4. A screenshot of the HTML Special Characters admin widget when the mouse is hovering over one of the special characters.  The hover text that appears shows the HTML entity encoding for the character as well as the name of the character
 
 
+== Filters ==
+
+The plugin exposes one filter for hooking.  Typically, customizations utilizing this hook would be put into your active theme's functions.php file, or used by another plugin.
+
+= c2c_html_special_characters (filter) =
+
+The 'c2c_html_special_characters' hook allows you to remove existing characters or entire groups of characters, and/or add new characters or groups of characters.
+
+Arguments:
+
+* $codes (array) : An association array in which the keys are a grouping name and the values are associative arrays themselves with the code as the key and the human-friendly descriptions as the values.
+
+Example:
+
+`
+// Add a new grouping of characters (accented 'A's).
+add_filter( 'c2c_html_special_characters', 'more_html_special_characters' );
+function more_html_special_characters( $codes ) {
+	$codes[''] = array(
+		'char_a' => array(
+			'&Agrave;'	=> 'A grave accent',
+			'&Aacute;'	=> 'A accute accent',
+			'&Acirc;'	=> 'A circumflex',
+			'&Atilde;'	=> 'A tilde',
+			'&Auml;'	=> 'A umlaut',
+			'&Aring;'	=> 'A ring',
+			'&AElig;'	=> 'AE ligature'
+		)
+	);
+	return $codes; // Important!
+}
+`
+
+
 == Changelog ==
+
+= 1.7.1 =
+* Add Filters section to readme.txt and document 'c2c_html_special_characters' filter
+* Note compatibility through WP 3.2+
+* Tiny code formatting change (spacing)
+* Fix plugin homepage and author links in description in readme.txt
 
 = 1.7 =
 * Switch from object instantiation to direct class invocation
@@ -102,6 +143,9 @@ Try:
 
 
 == Upgrade Notice ==
+
+= 1.7.1 =
+Trivial update: noted compatibility through WP 3.2+
 
 = 1.7 =
 Minor update: implementation changes; noted compatibility with WP 3.1+ and updated copyright date.

@@ -2,17 +2,17 @@
 /**
  * @package HTML_Special_Characters_Helper
  * @author Scott Reilly
- * @version 1.7
+ * @version 1.7.1
  */
 /*
 Plugin Name: HTML Special Characters Helper
-Version: 1.7
+Version: 1.7.1
 Plugin URI: http://coffee2code.com/wp-plugins/html-special-characters-helper/
 Author: Scott Reilly
 Author URI: http://coffee2code.com
 Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
-Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+, 3.1+.
+Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+, 3.1+, 3.2+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
@@ -21,7 +21,8 @@ Compatible with WordPress 2.6+, 2.7+, 2.8+, 2.9+, 3.0+, 3.1+.
 TODO:
 	* Localize
 	* Front-end widget to facilitate use in comments
-
+	* Enqueue scripts and styles?
+	* Make it possible to attach HTML character insertion into any input field
 */
 
 /*
@@ -40,7 +41,7 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA
 IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-if ( is_admin() && !class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
+if ( is_admin() && ! class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
 
 class c2c_HTMLSpecialCharactersHelper {
 	public static $title = 'HTML Special Characters';
