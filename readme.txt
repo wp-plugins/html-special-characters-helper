@@ -2,10 +2,10 @@
 Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
-Requires at least: 2.6
-Tested up to: 3.2
-Stable tag: 1.7.1
-Version: 1.7.1
+Requires at least: 2.8
+Tested up to: 3.3
+Stable tag: 1.8
+Version: 1.8
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -18,7 +18,7 @@ The admin widget is labeled "HTML Special Characters" and is present in the admi
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/extend/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -56,7 +56,7 @@ Try:
 
 == Filters ==
 
-The plugin exposes one filter for hooking.  Typically, customizations utilizing this hook would be put into your active theme's functions.php file, or used by another plugin.
+The plugin exposes two filters for hooking.  Typically, customizations utilizing this hook would be put into your active theme's functions.php file, or used by another plugin.
 
 = c2c_html_special_characters (filter) =
 
@@ -74,21 +74,57 @@ add_filter( 'c2c_html_special_characters', 'more_html_special_characters' );
 function more_html_special_characters( $codes ) {
 	$codes[''] = array(
 		'char_a' => array(
-			'&Agrave;'	=> 'A grave accent',
-			'&Aacute;'	=> 'A accute accent',
-			'&Acirc;'	=> 'A circumflex',
-			'&Atilde;'	=> 'A tilde',
-			'&Auml;'	=> 'A umlaut',
-			'&Aring;'	=> 'A ring',
-			'&AElig;'	=> 'AE ligature'
+			'&Agrave;' => 'A grave accent',
+			'&Aacute;' => 'A accute accent',
+			'&Acirc;'  => 'A circumflex',
+			'&Atilde;' => 'A tilde',
+			'&Auml;'   => 'A umlaut',
+			'&Aring;'  => 'A ring',
+			'&AElig;'  => 'AE ligature'
 		)
 	);
 	return $codes; // Important!
 }
 `
 
+= c2c_html_special_characters_post_type (filter) =
+
+The 'c2c_html_special_characters_post_type' hook allows you to specify which post_types for which the HTML Special Characters metabox should be shown.
+
+Arguments:
+
+* $post_types (array) : An array of post types. By default, this value is `array( 'page', 'post' )`
+
+Example:
+
+`
+// Show HTML Special Characters Helper for additional post_types
+add_filter( 'c2c_html_special_characters_post_types', 'more_html_special_characters_post_types' );
+function more_html_special_characters_post_types( $post_types ) {
+	$post_types[] = 'products'; // Show for products
+	unset( $post_types['page'] ); // Don't show for pages
+	return $post_types;
+}
+`
 
 == Changelog ==
+
+= 1.8 =
+* Add new filter 'c2c_html_special_characters_post_type' to allow support for other post types
+* Enqueue CSS
+* Enqueue JS
+* Add register_styles(), enqueue_admin_css(), enqueue_admin_js()
+* Remove insert_admin_css(), insert_admin_js()
+* Add support for localization
+* Add .pot
+* Update readme with example and documentation for new filter
+* Minor code reformatting (spacing)
+* Note compatibility through WP 3.3+
+* Drop support for versions of WP older than 2.8
+* Update all four screenshots (now based on WP 3.3)
+* Add 'Domain Path' directive to top of main plugin file
+* Add link to plugin directory page to readme.txt
+* Update copyright date (2012)
 
 = 1.7.1 =
 * Add Filters section to readme.txt and document 'c2c_html_special_characters' filter
@@ -143,6 +179,9 @@ function more_html_special_characters( $codes ) {
 
 
 == Upgrade Notice ==
+
+= 1.8 =
+Recommended update: added support for other post_types (via filter); enqueue JS/CSS; support localization; updated screenshots; compatibility is now WP 2.8-3.3+.
 
 = 1.7.1 =
 Trivial update: noted compatibility through WP 3.2+
