@@ -2,18 +2,21 @@
 /**
  * @package HTML_Special_Characters_Helper
  * @author Scott Reilly
- * @version 1.8
+ * @version 1.9
  */
 /*
 Plugin Name: HTML Special Characters Helper
-Version: 1.8
+Version: 1.9
 Plugin URI: http://coffee2code.com/wp-plugins/html-special-characters-helper/
 Author: Scott Reilly
-Author URI: http://coffee2code.com
+Author URI: http://coffee2code.com/
+Text Domain: html-special-characters-helper
 Domain Path: /lang/
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
-Compatible with WordPress 2.8+, 2.9+, 3.0+, 3.1+, 3.2+, 3.3+.
+Compatible with WordPress 2.8 through 3.4+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
@@ -25,25 +28,36 @@ TODO:
 */
 
 /*
-Copyright (c) 2007-2012 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2007-2012 by Scott Reilly (aka coffee2code)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy,
-modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following conditions:
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 if ( is_admin() && ! class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
 
 class c2c_HTMLSpecialCharactersHelper {
 	public static $title = '';
+
+	/**
+	 * Returns version of the plugin.
+	 *
+	 * @since 1.9
+	 */
+	public static function version() {
+		return '1.9';
+	}
 
 	/**
 	 * Constructor
@@ -60,19 +74,29 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * @return void
 	 */
 	public static function do_init() {
-		global $pagenow;
 		load_plugin_textdomain( 'c2c_hsch', false, basename( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'lang' );
 		self::$title = __( 'HTML Special Characters', 'c2c_hsch' );
-		if ( in_array( $pagenow, array( 'page.php', 'page-new.php', 'post.php', 'post-new.php' ) ) ) {
-			// Enqueues JS for admin page
-			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_js' ) );
-			// Register and enqueue styles for admin page
-			self::register_styles();
-			add_action( 'admin_print_styles',    array( __CLASS__, 'enqueue_admin_css' ) );
-		}
+		add_action( 'load-page.php',     array( __CLASS__, 'enqueue_scripts_and_styles' ) );
+		add_action( 'load-page-new.php', array( __CLASS__, 'enqueue_scripts_and_styles' ) );
+		add_action( 'load-post.php',     array( __CLASS__, 'enqueue_scripts_and_styles' ) );
+		add_action( 'load-post-new.php', array( __CLASS__, 'enqueue_scripts_and_styles' ) );
+
 		$post_types = apply_filters( 'c2c_html_special_characters_helper_post_types', array( 'page', 'post' ) );
 		foreach ( $post_types as $post_type )
 			add_meta_box( 'htmlspecialchars', self::$title, array( __CLASS__, 'add_meta_box' ), $post_type, 'side' );
+	}
+
+	/**
+	 * Enqueues scripts and styles.
+	 *
+	 * @since 1.9
+	 */
+	public static function enqueue_scripts_and_styles() {
+		// Enqueues JS for admin page
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_js' ) );
+		// Register and enqueue styles for admin page
+		self::register_styles();
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_admin_css' ) );
 	}
 
 	/**
@@ -308,9 +332,9 @@ class c2c_HTMLSpecialCharactersHelper {
 			if ( 'common' != $cat )
 				$moreinnards .= "<dt>$cat:</dt><dd>";
 			foreach ( $codes[$cat] as $code => $description ) {
-					$ecode = esc_attr( $code );
+					$ecode = str_replace( '&', '&amp;', esc_attr( $code ) );
 					$description = esc_attr( $description );
-					$item = "<acronym onclick=\"send_to_editor('$ecode');\" title='$ecode $description'> $code</acronym>";
+					$item = "<acronym onclick=\"send_to_editor('$ecode');\" title='$ecode $description'>$code</acronym> ";
 					if ( 'common' == $cat )
 						$innards .= $item;
 					else
@@ -379,7 +403,7 @@ HTML;
 	 */
 	public static function enqueue_admin_js() {
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( __CLASS__ . '_admin', plugins_url( 'admin.js', __FILE__ ), array( 'jquery' ), '1.0', true );
+		wp_enqueue_script( __CLASS__ . '_admin', plugins_url( 'admin.js', __FILE__ ), array( 'jquery' ), self::version(), true );
 	}
 
 } // end c2c_HTMLSpecialCharactersHelper
@@ -387,5 +411,3 @@ HTML;
 c2c_HTMLSpecialCharactersHelper::init();
 
 endif; // end if !class_exists()
-
-?>
