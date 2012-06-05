@@ -1,0 +1,705 @@
+# Translation of the WordPress plugin HTML Special Characters Helper v1.8 by Scott Reilly.
+# Copyright (C) 2011 Scott Reilly
+# This file is distributed under the same license as the HTML Special Characters Helper plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: HTML Special Characters Helper 1.8\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/html-special-characters-"
+"helper\n"
+"POT-Creation-Date: 2011-12-08 05:36:31+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: html-special-characters-helper.php:65
+msgid "HTML Special Characters"
+msgstr ""
+
+#: html-special-characters-helper.php:84
+msgid "copyright sign"
+msgstr ""
+
+#: html-special-characters-helper.php:85
+msgid "registered trade mark sign"
+msgstr ""
+
+#: html-special-characters-helper.php:86
+msgid "trade mark sign"
+msgstr ""
+
+#: html-special-characters-helper.php:87
+#: html-special-characters-helper.php:129
+msgid "left double angle quotes"
+msgstr ""
+
+#: html-special-characters-helper.php:88
+#: html-special-characters-helper.php:130
+msgid "right double angle quotes"
+msgstr ""
+
+#: html-special-characters-helper.php:89
+#: html-special-characters-helper.php:150
+msgid "cent sign"
+msgstr ""
+
+#: html-special-characters-helper.php:90
+msgid "pound sign"
+msgstr ""
+
+#: html-special-characters-helper.php:91
+msgid "euro sign"
+msgstr ""
+
+#: html-special-characters-helper.php:92
+msgid "yen sign"
+msgstr ""
+
+#: html-special-characters-helper.php:93
+#: html-special-characters-helper.php:195
+msgid "superscript one"
+msgstr ""
+
+#: html-special-characters-helper.php:94
+#: html-special-characters-helper.php:196
+msgid "superscript two - squared"
+msgstr ""
+
+#: html-special-characters-helper.php:95
+#: html-special-characters-helper.php:197
+msgid "superscript three - cubed"
+msgstr ""
+
+#: html-special-characters-helper.php:96
+msgid "degree sign"
+msgstr ""
+
+#: html-special-characters-helper.php:97
+#: html-special-characters-helper.php:198
+msgid "fraction one quarter (1/4)"
+msgstr ""
+
+#: html-special-characters-helper.php:98
+#: html-special-characters-helper.php:199
+msgid "fraction one half (1/2)"
+msgstr ""
+
+#: html-special-characters-helper.php:99
+#: html-special-characters-helper.php:200
+msgid "fraction three quarters (3/4)"
+msgstr ""
+
+#: html-special-characters-helper.php:100
+#: html-special-characters-helper.php:146
+msgid "inverted question mark"
+msgstr ""
+
+#: html-special-characters-helper.php:101
+#: html-special-characters-helper.php:147
+msgid "inverted exclamation mark"
+msgstr ""
+
+#: html-special-characters-helper.php:102
+#: html-special-characters-helper.php:128
+msgid "double quotes"
+msgstr ""
+
+#: html-special-characters-helper.php:103
+#: html-special-characters-helper.php:126
+msgid "ampersand"
+msgstr ""
+
+#: html-special-characters-helper.php:104
+msgid "less than sign"
+msgstr ""
+
+#: html-special-characters-helper.php:105
+msgid "greater than sign"
+msgstr ""
+
+#: html-special-characters-helper.php:106
+#: html-special-characters-helper.php:127
+msgid "apostrophe"
+msgstr ""
+
+#: html-special-characters-helper.php:107
+msgid "subsection sign"
+msgstr ""
+
+#: html-special-characters-helper.php:108
+msgid "micro sign"
+msgstr ""
+
+#: html-special-characters-helper.php:109
+#: html-special-characters-helper.php:168
+msgid "multiplication sign"
+msgstr ""
+
+#: html-special-characters-helper.php:110
+#: html-special-characters-helper.php:167
+msgid "division sign"
+msgstr ""
+
+#: html-special-characters-helper.php:111
+#: html-special-characters-helper.php:171
+msgid "plus/minus symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:112
+#: html-special-characters-helper.php:141
+msgid "middle dot"
+msgstr ""
+
+#: html-special-characters-helper.php:113
+#: html-special-characters-helper.php:138
+msgid "paragraph symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:114
+#: html-special-characters-helper.php:143
+msgid "en dash"
+msgstr ""
+
+#: html-special-characters-helper.php:115
+#: html-special-characters-helper.php:144
+msgid "em dash"
+msgstr ""
+
+#: html-special-characters-helper.php:116
+#: html-special-characters-helper.php:145
+msgid "horizontal ellipsis"
+msgstr ""
+
+#: html-special-characters-helper.php:117
+msgid "bullet"
+msgstr ""
+
+#: html-special-characters-helper.php:118
+#: html-special-characters-helper.php:206
+msgid "dagger"
+msgstr ""
+
+#: html-special-characters-helper.php:119
+#: html-special-characters-helper.php:207
+msgid "double dagger"
+msgstr ""
+
+#: html-special-characters-helper.php:120
+#: html-special-characters-helper.php:208
+msgid "left arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:121
+#: html-special-characters-helper.php:209
+msgid "up arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:122
+#: html-special-characters-helper.php:210
+msgid "right arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:123
+#: html-special-characters-helper.php:211
+msgid "down arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:131
+msgid "opening double quotes"
+msgstr ""
+
+#: html-special-characters-helper.php:132
+msgid "closing double quotes"
+msgstr ""
+
+#: html-special-characters-helper.php:133
+msgid "opening Single quote mark"
+msgstr ""
+
+#: html-special-characters-helper.php:134
+msgid "closing single quote mark"
+msgstr ""
+
+#: html-special-characters-helper.php:135
+msgid "registered symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:136
+msgid "copyright symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:137
+msgid "trademark symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:139
+msgid "sharp s / ess-zed"
+msgstr ""
+
+#: html-special-characters-helper.php:140
+msgid "bullet/big dot"
+msgstr ""
+
+#: html-special-characters-helper.php:142
+msgid "subsection symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:151
+msgid "British Pound"
+msgstr ""
+
+#: html-special-characters-helper.php:152
+msgid "Japanese Yen"
+msgstr ""
+
+#: html-special-characters-helper.php:153
+msgid "Euro symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:154
+msgid "Dutch Florin symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:155
+msgid "generic currency symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:158
+msgid "function"
+msgstr ""
+
+#: html-special-characters-helper.php:159
+msgid "greater than"
+msgstr ""
+
+#: html-special-characters-helper.php:160
+msgid "less than"
+msgstr ""
+
+#: html-special-characters-helper.php:161
+msgid "greater than or equal to"
+msgstr ""
+
+#: html-special-characters-helper.php:162
+msgid "less than or equal to"
+msgstr ""
+
+#: html-special-characters-helper.php:163
+msgid "not equal to"
+msgstr ""
+
+#: html-special-characters-helper.php:164
+msgid "approximately"
+msgstr ""
+
+#: html-special-characters-helper.php:165
+msgid "identical to"
+msgstr ""
+
+#: html-special-characters-helper.php:166
+msgid "minus sign"
+msgstr ""
+
+#: html-special-characters-helper.php:169
+msgid "degree symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:170
+msgid "not symbol"
+msgstr ""
+
+#: html-special-characters-helper.php:172
+msgid "Micro"
+msgstr ""
+
+#: html-special-characters-helper.php:173
+msgid "for all"
+msgstr ""
+
+#: html-special-characters-helper.php:174
+msgid "there exists"
+msgstr ""
+
+#: html-special-characters-helper.php:175
+msgid "therefore triangle"
+msgstr ""
+
+#: html-special-characters-helper.php:176
+msgid "square root radical"
+msgstr ""
+
+#: html-special-characters-helper.php:177
+msgid "infinity"
+msgstr ""
+
+#: html-special-characters-helper.php:178
+msgid "integral sign"
+msgstr ""
+
+#: html-special-characters-helper.php:179
+msgid "partial differential"
+msgstr ""
+
+#: html-special-characters-helper.php:180
+msgid "dot operator"
+msgstr ""
+
+#: html-special-characters-helper.php:181
+msgid "single prime"
+msgstr ""
+
+#: html-special-characters-helper.php:182
+msgid "double prime"
+msgstr ""
+
+#: html-special-characters-helper.php:183
+msgid "n-ary summation"
+msgstr ""
+
+#: html-special-characters-helper.php:184
+msgid "n-ary product"
+msgstr ""
+
+#: html-special-characters-helper.php:185
+msgid "per mil (1/1000th)"
+msgstr ""
+
+#: html-special-characters-helper.php:186
+msgid "orthogonal to / perpendicular"
+msgstr ""
+
+#: html-special-characters-helper.php:187
+msgid "angle"
+msgstr ""
+
+#: html-special-characters-helper.php:188
+msgid "logical and"
+msgstr ""
+
+#: html-special-characters-helper.php:189
+msgid "logical or"
+msgstr ""
+
+#: html-special-characters-helper.php:190
+msgid "intersection"
+msgstr ""
+
+#: html-special-characters-helper.php:191
+msgid "union"
+msgstr ""
+
+#: html-special-characters-helper.php:192
+msgid "empty set"
+msgstr ""
+
+#: html-special-characters-helper.php:193
+msgid "nabla, backward difference"
+msgstr ""
+
+#: html-special-characters-helper.php:194
+msgid "fraction slash"
+msgstr ""
+
+#: html-special-characters-helper.php:201
+msgid "feminine ordinal indicator"
+msgstr ""
+
+#: html-special-characters-helper.php:202
+msgid "masculine ordinal indicator"
+msgstr ""
+
+#: html-special-characters-helper.php:205
+msgid "cedilla"
+msgstr ""
+
+#: html-special-characters-helper.php:212
+msgid "left-right arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:213
+msgid "carriage return"
+msgstr ""
+
+#: html-special-characters-helper.php:214
+msgid "left double arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:215
+msgid "up double arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:216
+msgid "right double arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:217
+msgid "down double arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:218
+msgid "left-right double arrow"
+msgstr ""
+
+#: html-special-characters-helper.php:219
+msgid "lozenge"
+msgstr ""
+
+#: html-special-characters-helper.php:220
+msgid "clubs"
+msgstr ""
+
+#: html-special-characters-helper.php:221
+msgid "hearts"
+msgstr ""
+
+#: html-special-characters-helper.php:222
+msgid "diamonds"
+msgstr ""
+
+#: html-special-characters-helper.php:223
+msgid "spades"
+msgstr ""
+
+#: html-special-characters-helper.php:226
+msgid "Greek capital letter alpha"
+msgstr ""
+
+#: html-special-characters-helper.php:227
+msgid "Greek capital letter beta"
+msgstr ""
+
+#: html-special-characters-helper.php:228
+msgid "Greek capital letter gamma"
+msgstr ""
+
+#: html-special-characters-helper.php:229
+msgid "Greek capital letter delta"
+msgstr ""
+
+#: html-special-characters-helper.php:230
+msgid "Greek capital letter epsilon"
+msgstr ""
+
+#: html-special-characters-helper.php:231
+msgid "Greek capital letter zeta"
+msgstr ""
+
+#: html-special-characters-helper.php:232
+msgid "Greek capital letter eta"
+msgstr ""
+
+#: html-special-characters-helper.php:233
+msgid "Greek capital letter theta"
+msgstr ""
+
+#: html-special-characters-helper.php:234
+msgid "Greek capital letter iota"
+msgstr ""
+
+#: html-special-characters-helper.php:235
+msgid "Greek capital letter kappa"
+msgstr ""
+
+#: html-special-characters-helper.php:236
+msgid "Greek capital letter lambda"
+msgstr ""
+
+#: html-special-characters-helper.php:237
+msgid "Greek capital letter mu"
+msgstr ""
+
+#: html-special-characters-helper.php:238
+msgid "Greek capital letter nu"
+msgstr ""
+
+#: html-special-characters-helper.php:239
+msgid "Greek capital letter xi"
+msgstr ""
+
+#: html-special-characters-helper.php:240
+msgid "Greek capital letter omicron"
+msgstr ""
+
+#: html-special-characters-helper.php:241
+msgid "Greek capital letter pi"
+msgstr ""
+
+#: html-special-characters-helper.php:242
+msgid "Greek capital letter rho"
+msgstr ""
+
+#: html-special-characters-helper.php:243
+msgid "Greek capital letter sigma"
+msgstr ""
+
+#: html-special-characters-helper.php:244
+msgid "Greek capital letter tau"
+msgstr ""
+
+#: html-special-characters-helper.php:245
+msgid "Greek capital letter upsilon"
+msgstr ""
+
+#: html-special-characters-helper.php:246
+msgid "Greek capital letter phi"
+msgstr ""
+
+#: html-special-characters-helper.php:247
+msgid "Greek capital letter chi"
+msgstr ""
+
+#: html-special-characters-helper.php:248
+msgid "Greek capital letter psi"
+msgstr ""
+
+#: html-special-characters-helper.php:249
+msgid "Greek capital letter omega"
+msgstr ""
+
+#: html-special-characters-helper.php:250
+msgid "Greek small letter alpha"
+msgstr ""
+
+#: html-special-characters-helper.php:251
+msgid "Greek small letter beta"
+msgstr ""
+
+#: html-special-characters-helper.php:252
+msgid "Greek small letter gamma"
+msgstr ""
+
+#: html-special-characters-helper.php:253
+msgid "Greek small letter delta"
+msgstr ""
+
+#: html-special-characters-helper.php:254
+msgid "Greek small letter epsilon"
+msgstr ""
+
+#: html-special-characters-helper.php:255
+msgid "Greek small letter zeta"
+msgstr ""
+
+#: html-special-characters-helper.php:256
+msgid "Greek small letter eta"
+msgstr ""
+
+#: html-special-characters-helper.php:257
+msgid "Greek small letter theta"
+msgstr ""
+
+#: html-special-characters-helper.php:258
+msgid "Greek small letter iota"
+msgstr ""
+
+#: html-special-characters-helper.php:259
+msgid "Greek small letter kappa"
+msgstr ""
+
+#: html-special-characters-helper.php:260
+msgid "Greek small letter lambda"
+msgstr ""
+
+#: html-special-characters-helper.php:261
+msgid "Greek small letter mu"
+msgstr ""
+
+#: html-special-characters-helper.php:262
+msgid "Greek small letter nu"
+msgstr ""
+
+#: html-special-characters-helper.php:263
+msgid "Greek small letter xi"
+msgstr ""
+
+#: html-special-characters-helper.php:264
+msgid "Greek small letter omicron"
+msgstr ""
+
+#: html-special-characters-helper.php:265
+msgid "Greek small letter pi"
+msgstr ""
+
+#: html-special-characters-helper.php:266
+msgid "Greek small letter rho"
+msgstr ""
+
+#: html-special-characters-helper.php:267
+msgid "Greek small letter final sigma"
+msgstr ""
+
+#: html-special-characters-helper.php:268
+msgid "Greek small letter sigma"
+msgstr ""
+
+#: html-special-characters-helper.php:269
+msgid "Greek small letter tau"
+msgstr ""
+
+#: html-special-characters-helper.php:270
+msgid "Greek small letter upsilon"
+msgstr ""
+
+#: html-special-characters-helper.php:271
+msgid "Greek small letter phi"
+msgstr ""
+
+#: html-special-characters-helper.php:272
+msgid "Greek small letter chi"
+msgstr ""
+
+#: html-special-characters-helper.php:273
+msgid "Greek small letter psi"
+msgstr ""
+
+#: html-special-characters-helper.php:274
+msgid "Greek small letter omega"
+msgstr ""
+
+#: html-special-characters-helper.php:322
+msgid "Click to toggle display of help"
+msgstr ""
+
+#: html-special-characters-helper.php:322
+msgid "Help?"
+msgstr ""
+
+#: html-special-characters-helper.php:324
+msgid "Click to toggle the display of more special characters"
+msgstr ""
+
+#: html-special-characters-helper.php:325
+msgid ""
+"See <span id=\"htmlhelper_more\">more</span><span id=\"htmlhelper_less"
+"\">less</span>"
+msgstr ""
+
+#: html-special-characters-helper.php:327
+msgid ""
+"Click to insert character into post. Mouse-over character for more info. "
+"Some characters may not display in older browsers."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "HTML Special Characters Helper"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://coffee2code.com/wp-plugins/html-special-characters-helper/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Admin widget on the Write Post page for inserting HTML encodings of special "
+"characters into the post."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Scott Reilly"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://coffee2code.com"
+msgstr ""

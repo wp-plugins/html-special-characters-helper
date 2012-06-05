@@ -2,24 +2,30 @@
 Contributors: coffee2code
 Donate link: http://coffee2code.com/donate
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
-Requires at least: 2.6
-Tested up to: 2.8.1
-Stable tag: 1.5
-Version: 1.5
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires at least: 2.8
+Tested up to: 3.4
+Stable tag: 1.9
+Version: 1.9
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
+
 
 == Description ==
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
-The admin widget is labeled "HTML Special Characters" and is present in the admin Write Post and Write Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
+The admin widget is labeled "HTML Special Characters" and is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/extend/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
+
+
 == Installation ==
 
-1. Unzip `html-special-characters-helper.zip` inside the `/wp-content/plugins/` directory
+1. Unzip `html-special-characters-helper.zip` inside the `/wp-content/plugins/` directory (or install via the built-in WordPress plugin installer)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
 1. An admin widget entitled "HTML Special Characters" will now be present in your write post and write page forms.  Simply click on any character that you would like inserted into your post.
 
@@ -33,6 +39,15 @@ You can't.  The plugin only inserts the HTML character encodings into the post b
 
 It is in the sidebar, most likely at the sidebar's bottom.
 
+= Have any references? =
+
+Try:
+
+* http://www.w3schools.com/tags/ref_entities.asp
+* http://tlt.psu.edu/suggestions/international/web/codehtml.html
+* http://wdvl.internet.com/Authoring/HTML/Entities/
+
+
 == Screenshots ==
 
 1. A screenshot of the HTML Special Characters admin widget in its default state
@@ -40,10 +55,126 @@ It is in the sidebar, most likely at the sidebar's bottom.
 3. A screenshot of the HTML Special Characters admin widget after "Help?" is clicked
 4. A screenshot of the HTML Special Characters admin widget when the mouse is hovering over one of the special characters.  The hover text that appears shows the HTML entity encoding for the character as well as the name of the character
 
+
+== Filters ==
+
+The plugin exposes two filters for hooking.  Typically, customizations utilizing this hook would be put into your active theme's functions.php file, or used by another plugin.
+
+= c2c_html_special_characters (filter) =
+
+The 'c2c_html_special_characters' hook allows you to remove existing characters or entire groups of characters, and/or add new characters or groups of characters.
+
+Arguments:
+
+* $codes (array) : An association array in which the keys are a grouping name and the values are associative arrays themselves with the code as the key and the human-friendly descriptions as the values.
+
+Example:
+
+`
+// Add a new grouping of characters (accented 'A's).
+add_filter( 'c2c_html_special_characters', 'more_html_special_characters' );
+function more_html_special_characters( $codes ) {
+	$codes[''] = array(
+		'char_a' => array(
+			'&Agrave;' => 'A grave accent',
+			'&Aacute;' => 'A accute accent',
+			'&Acirc;'  => 'A circumflex',
+			'&Atilde;' => 'A tilde',
+			'&Auml;'   => 'A umlaut',
+			'&Aring;'  => 'A ring',
+			'&AElig;'  => 'AE ligature'
+		)
+	);
+	return $codes; // Important!
+}
+`
+
+= c2c_html_special_characters_post_type (filter) =
+
+The 'c2c_html_special_characters_post_type' hook allows you to specify which post_types for which the HTML Special Characters metabox should be shown.
+
+Arguments:
+
+* $post_types (array) : An array of post types. By default, this value is `array( 'page', 'post' )`
+
+Example:
+
+`
+// Show HTML Special Characters Helper for additional post_types
+add_filter( 'c2c_html_special_characters_post_types', 'more_html_special_characters_post_types' );
+function more_html_special_characters_post_types( $post_types ) {
+	$post_types[] = 'products'; // Show for products
+	unset( $post_types['page'] ); // Don't show for pages
+	return $post_types;
+}
+`
+
 == Changelog ==
 
+= 1.9 =
+* Fix to show HTML entity encoding in tooltip instead of the character
+* Change how scripts and styles are enqueued
+* Add version() to return plugin version
+* Re-license as GPLv2 or later (from X11)
+* Add 'Text Domain', 'License', and 'License URI' header tags to readme.txt and plugin file
+* Add banner image for plugin page
+* Remove ending PHP close tag
+* Note compatibility through WP 3.4+
+
+= 1.8 =
+* Add new filter 'c2c_html_special_characters_post_type' to allow support for other post types
+* Enqueue CSS
+* Enqueue JS
+* Add register_styles(), enqueue_admin_css(), enqueue_admin_js()
+* Remove insert_admin_css(), insert_admin_js()
+* Add support for localization
+* Add .pot
+* Update readme with example and documentation for new filter
+* Minor code reformatting (spacing)
+* Note compatibility through WP 3.3+
+* Drop support for versions of WP older than 2.8
+* Update all four screenshots (now based on WP 3.3)
+* Add 'Domain Path' directive to top of main plugin file
+* Add link to plugin directory page to readme.txt
+* Update copyright date (2012)
+
+= 1.7.1 =
+* Add Filters section to readme.txt and document 'c2c_html_special_characters' filter
+* Note compatibility through WP 3.2+
+* Tiny code formatting change (spacing)
+* Fix plugin homepage and author links in description in readme.txt
+
+= 1.7 =
+* Switch from object instantiation to direct class invocation
+* Explicitly declare all functions public|protected static and class variable public static
+* Output CSS statements in a collapsed, one-line per block format
+* Rename class function admin_init() to do_init()
+* Documentation tweaks
+* Note compatibility through WP 3.1+
+* Update copyright date (2011)
+
+= 1.6 =
+* Extract all inline JavaScript into add_admin_js() and output via admin_print_footer_scripts action
+* Extract all inline CSS into add_admin_css()
+* Only output CSS on the add/edit post/page pages
+* Remove all references to $for (which was context variable that lingered from former rte popup)
+* Remove JavaScript related to inserting text into editor and just use send_to_editor()
+* Change the 'Toggle more?' link to 'See more'/'See less' (JavaScript toggles between the two as appropriate)
+* Move hooking of actions out of constructor and into class's admin_init()
+* Rename add_css() to add_admin_css()
+* Assign object instance to global variable, $c2c_html_special_characters_helper, to allow for external manipulation
+* Rename class from 'HTMLSpecialCharactersHelper' to 'c2c_HTMLSpecialCharactersHelper'
+* Don't define class unless within admin section
+* Note compatibility with WP 3.0+
+* Minor code reformatting (spacing)
+* Remove documentation and instructions from top of plugin file (all of that and more are contained in readme.txt)
+* Add PHPDoc documentation
+* Add package info to top of file
+* Update copyright date
+* Add Upgrade Notice section to readme.txt
+
 = 1.5 =
-* Added 78 mew characters to extended characters listing: left-right arrow, carriage return arrow, lozenge, clubs, hearts, diamonds, spades, for all, there exists, empty set, intersection, union, backward difference, angle, logical and, logical or, 49 Greek characters, 5 double arrows, plus, minus, dot operator, orthogonal to, feminine ordinal indicator, masculine ordinal indicator, fraction slash, cedilla
+* Added 78 new characters to extended characters listing: left-right arrow, carriage return arrow, lozenge, clubs, hearts, diamonds, spades, for all, there exists, empty set, intersection, union, backward difference, angle, logical and, logical or, 49 Greek characters, 5 double arrows, plus, minus, dot operator, orthogonal to, feminine ordinal indicator, masculine ordinal indicator, fraction slash, cedilla
 * Tweaked description of a few existing special characters
 * Reordered some of the existing special characters
 * Removed rich text editor toolbar button and all related code and files (including html-special-characters.php, and tinymce/*)
@@ -57,3 +188,21 @@ It is in the sidebar, most likely at the sidebar's bottom.
 
 = 1.0 =
 * Initial release
+
+
+== Upgrade Notice ==
+
+= 1.9 =
+Recommended minor update: minor fix to show HTML entity encoding in tooltip instead of the special character itself; minor improvements; noted compatibility through WP 3.4+; explicitly stated license
+
+= 1.8 =
+Recommended update: added support for other post_types (via filter); enqueue JS/CSS; support localization; updated screenshots; compatibility is now WP 2.8-3.3+.
+
+= 1.7.1 =
+Trivial update: noted compatibility through WP 3.2+
+
+= 1.7 =
+Minor update: implementation changes; noted compatibility with WP 3.1+ and updated copyright date.
+
+= 1.6 =
+Recommended major compatibility update. Highlights: JS/CSS handling tweaks; misc non-functionality tweaks; noted compatibility with WP 3.0+.
