@@ -2,11 +2,11 @@
 /**
  * @package HTML_Special_Characters_Helper
  * @author Scott Reilly
- * @version 1.9
+ * @version 1.9.1
  */
 /*
 Plugin Name: HTML Special Characters Helper
-Version: 1.9
+Version: 1.9.1
 Plugin URI: http://coffee2code.com/wp-plugins/html-special-characters-helper/
 Author: Scott Reilly
 Author URI: http://coffee2code.com/
@@ -16,7 +16,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
-Compatible with WordPress 2.8 through 3.4+.
+Compatible with WordPress 2.8 through 3.5+.
 
 =>> Read the accompanying readme.txt file for instructions and documentation.
 =>> Also, visit the plugin's homepage for additional information and updates.
@@ -28,7 +28,7 @@ TODO:
 */
 
 /*
-	Copyright (c) 2007-2012 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2007-2013 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -45,6 +45,8 @@ TODO:
 	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+defined( 'ABSPATH' ) or die();
+
 if ( is_admin() && ! class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
 
 class c2c_HTMLSpecialCharactersHelper {
@@ -56,7 +58,7 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * @since 1.9
 	 */
 	public static function version() {
-		return '1.9';
+		return '1.9.1';
 	}
 
 	/**

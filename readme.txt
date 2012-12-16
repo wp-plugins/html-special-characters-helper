@@ -5,9 +5,9 @@ Tags: post, admin widget, html special characters, write post, dbx, entity codes
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 2.8
-Tested up to: 3.4
-Stable tag: 1.9
-Version: 1.9
+Tested up to: 3.5
+Stable tag: 1.9.1
+Version: 1.9.1
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -111,6 +111,12 @@ function more_html_special_characters_post_types( $post_types ) {
 
 == Changelog ==
 
+= 1.9.1 =
+* Add check to prevent execution of code if file is directly accessed
+* Note compatibility through WP 3.5+
+* Update copyright date (2013)
+* Move screenshots into repo's assets directory
+
 = 1.9 =
 * Fix to show HTML entity encoding in tooltip instead of the character
 * Change how scripts and styles are enqueued
@@ -191,6 +197,9 @@ function more_html_special_characters_post_types( $post_types ) {
 
 
 == Upgrade Notice ==
+
+= 1.9.1 =
+Trivial update: noted compatibility through WP 3.5+
 
 = 1.9 =
 Recommended minor update: minor fix to show HTML entity encoding in tooltip instead of the special character itself; minor improvements; noted compatibility through WP 3.4+; explicitly stated license
