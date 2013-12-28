@@ -1,26 +1,23 @@
 === HTML Special Characters Helper ===
 Contributors: coffee2code
-Donate link: http://coffee2code.com/donate
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 2.8
-Tested up to: 3.4
-Stable tag: 1.9
-Version: 1.9
+Tested up to: 3.8
+Stable tag: 1.9.2
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
 
 == Description ==
 
-Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
-
-The admin widget is labeled "HTML Special Characters" and is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
+Add an admin widget labeled "HTML Special Characters" that is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/extend/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -111,6 +108,18 @@ function more_html_special_characters_post_types( $post_types ) {
 
 == Changelog ==
 
+= 1.9.2 =
+* Note compatibility through WP 3.8+
+* Update copyright date (2014)
+* Minor readme.txt tweaks
+* Change donate link
+
+= 1.9.1 =
+* Add check to prevent execution of code if file is directly accessed
+* Note compatibility through WP 3.5+
+* Update copyright date (2013)
+* Move screenshots into repo's assets directory
+
 = 1.9 =
 * Fix to show HTML entity encoding in tooltip instead of the character
 * Change how scripts and styles are enqueued
@@ -191,6 +200,12 @@ function more_html_special_characters_post_types( $post_types ) {
 
 
 == Upgrade Notice ==
+
+= 1.9.2 =
+Trivial update: noted compatibility through WP 3.8+
+
+= 1.9.1 =
+Trivial update: noted compatibility through WP 3.5+
 
 = 1.9 =
 Recommended minor update: minor fix to show HTML entity encoding in tooltip instead of the special character itself; minor improvements; noted compatibility through WP 3.4+; explicitly stated license
