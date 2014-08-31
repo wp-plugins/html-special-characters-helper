@@ -5,8 +5,8 @@ Tags: post, admin widget, html special characters, write post, dbx, entity codes
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 2.8
-Tested up to: 3.8
-Stable tag: 1.9.2
+Tested up to: 4.0
+Stable tag: 1.9.3
 
 Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
 
@@ -17,7 +17,7 @@ Add an admin widget labeled "HTML Special Characters" that is present in the adm
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](https://wordpress.org/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -108,7 +108,14 @@ function more_html_special_characters_post_types( $post_types ) {
 
 == Changelog ==
 
-= 1.9.2 =
+= 1.9.3 (2014-08-30) =
+* Minor plugin header reformatting
+* Minor code reformatting (bracing, spacing)
+* Change documentation links to wp.org to be https
+* Note compatibility through WP 4.0+
+* Add plugin icon
+
+= 1.9.2 (2013-12-28) =
 * Note compatibility through WP 3.8+
 * Update copyright date (2014)
 * Minor readme.txt tweaks
@@ -200,6 +207,9 @@ function more_html_special_characters_post_types( $post_types ) {
 
 
 == Upgrade Notice ==
+
+= 1.9.3 =
+Trivial update: noted compatibility through WP 4.0+; added plugin icon.
 
 = 1.9.2 =
 Trivial update: noted compatibility through WP 3.8+
