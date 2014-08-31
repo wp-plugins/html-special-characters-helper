@@ -1,34 +1,33 @@
 <?php
 /**
+ * Plugin Name: HTML Special Characters Helper
+ * Version:     1.9.3
+ * Plugin URI:  http://coffee2code.com/wp-plugins/html-special-characters-helper/
+ * Author:      Scott Reilly
+ * Author URI:  http://coffee2code.com/
+ * Text Domain: html-special-characters-helper
+ * Domain Path: /lang/
+ * License:     GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
+ *
+ * Compatible with WordPress 2.8 through 4.0+.
+ *
+ * =>> Read the accompanying readme.txt file for instructions and documentation.
+ * =>> Also, visit the plugin's homepage for additional information and updates.
+ * =>> Or visit: https://wordpress.org/plugins/html-special-characters-helper/
+ *
+ * TODO:
+ * * Front-end widget to facilitate use in comments
+ * * Make it possible to attach HTML character insertion into any input field
+ *
  * @package HTML_Special_Characters_Helper
  * @author Scott Reilly
- * @version 1.9
+ * @version 1.9.3
  */
-/*
-Plugin Name: HTML Special Characters Helper
-Version: 1.9
-Plugin URI: http://coffee2code.com/wp-plugins/html-special-characters-helper/
-Author: Scott Reilly
-Author URI: http://coffee2code.com/
-Text Domain: html-special-characters-helper
-Domain Path: /lang/
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Description: Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
-
-Compatible with WordPress 2.8 through 3.4+.
-
-=>> Read the accompanying readme.txt file for instructions and documentation.
-=>> Also, visit the plugin's homepage for additional information and updates.
-=>> Or visit: http://wordpress.org/extend/plugins/html-special-characters-helper/
-
-TODO:
-	* Front-end widget to facilitate use in comments
-	* Make it possible to attach HTML character insertion into any input field
-*/
 
 /*
-	Copyright (c) 2007-2012 by Scott Reilly (aka coffee2code)
+	Copyright (c) 2007-2014 by Scott Reilly (aka coffee2code)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -45,6 +44,8 @@ TODO:
 	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+defined( 'ABSPATH' ) or die();
+
 if ( is_admin() && ! class_exists( 'c2c_HTMLSpecialCharactersHelper' ) ) :
 
 class c2c_HTMLSpecialCharactersHelper {
@@ -56,7 +57,7 @@ class c2c_HTMLSpecialCharactersHelper {
 	 * @since 1.9
 	 */
 	public static function version() {
-		return '1.9';
+		return '1.9.3';
 	}
 
 	/**
@@ -76,14 +77,16 @@ class c2c_HTMLSpecialCharactersHelper {
 	public static function do_init() {
 		load_plugin_textdomain( 'c2c_hsch', false, basename( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR . 'lang' );
 		self::$title = __( 'HTML Special Characters', 'c2c_hsch' );
+
 		add_action( 'load-page.php',     array( __CLASS__, 'enqueue_scripts_and_styles' ) );
 		add_action( 'load-page-new.php', array( __CLASS__, 'enqueue_scripts_and_styles' ) );
 		add_action( 'load-post.php',     array( __CLASS__, 'enqueue_scripts_and_styles' ) );
 		add_action( 'load-post-new.php', array( __CLASS__, 'enqueue_scripts_and_styles' ) );
 
 		$post_types = apply_filters( 'c2c_html_special_characters_helper_post_types', array( 'page', 'post' ) );
-		foreach ( $post_types as $post_type )
+		foreach ( $post_types as $post_type ) {
 			add_meta_box( 'htmlspecialchars', self::$title, array( __CLASS__, 'add_meta_box' ), $post_type, 'side' );
+		}
 	}
 
 	/**
@@ -301,8 +304,11 @@ class c2c_HTMLSpecialCharactersHelper {
 				'&omega;'   => __( 'Greek small letter omega', 'c2c_hsch' )
 			)
 		);
-		if ( $category )
-			$codes = $codes[$category];
+
+		if ( $category ) {
+			$codes = $codes[ $category ];
+		}
+
 		return apply_filters( 'c2c_html_special_characters', $codes );
 	}
 
@@ -329,19 +335,24 @@ class c2c_HTMLSpecialCharactersHelper {
 		$moreinnards = '<dl id="morehtmlspecialcharacters">';
 		$i = 0;
 		foreach ( array_keys( $codes ) as $cat ) {
-			if ( 'common' != $cat )
+			if ( 'common' != $cat ) {
 				$moreinnards .= "<dt>$cat:</dt><dd>";
-			foreach ( $codes[$cat] as $code => $description ) {
+			}
+
+			foreach ( $codes[ $cat ] as $code => $description ) {
 					$ecode = str_replace( '&', '&amp;', esc_attr( $code ) );
 					$description = esc_attr( $description );
 					$item = "<acronym onclick=\"send_to_editor('$ecode');\" title='$ecode $description'>$code</acronym> ";
-					if ( 'common' == $cat )
+					if ( 'common' == $cat ) {
 						$innards .= $item;
-					else
+					} else {
 						$moreinnards .= $item;
+					}
 			}
-			if ( 'common' != $cat )
+
+			if ( 'common' != $cat ) {
 				$moreinnards .= '</dd>';
+			}
 		}
 		$moreinnards .= '</dl>';
 		$innards = '<div class="htmlspecialcharacter"><span id="commoncodes">' . $innards . '</span>';
@@ -354,8 +365,10 @@ class c2c_HTMLSpecialCharactersHelper {
 		$innards .= $moreinnards;
 		$innards .= '<p id="htmlhelperhelp">' . __( 'Click to insert character into post. Mouse-over character for more info. Some characters may not display in older browsers.', 'c2c_hsch' ) . '</p></div>';
 
-		if ( $echo )
+		if ( $echo ) {
 			echo $innards;
+		}
+
 		return $innards;
 	}
 
@@ -366,7 +379,8 @@ class c2c_HTMLSpecialCharactersHelper {
 	 */
 	public static function show_html_special_characters() {
 		$innards = self::show_html_special_characters_content( false );
-		$title = self::$title;
+		$title   = self::$title;
+
 		echo <<<HTML
 		<fieldset id="htmlspecialcharacterhelper" class="dbx-box">
 			<h3 class="dbx-handle">{$title}</h3>
