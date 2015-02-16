@@ -1,26 +1,23 @@
 === HTML Special Characters Helper ===
 Contributors: coffee2code
-Donate link: http://coffee2code.com/donate
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6ARCFJ9TX3522
 Tags: post, admin widget, html special characters, write post, dbx, entity codes, coffee2code
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 2.8
-Tested up to: 3.4
-Stable tag: 1.9
-Version: 1.9
+Tested up to: 4.1
+Stable tag: 2.0
 
-Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
+Admin widget on the Add/Edit Post pages for inserting HTML encodings of special characters into the post.
 
 
 == Description ==
 
-Admin widget on the Write Post page for inserting HTML encodings of special characters into the post.
-
-The admin widget is labeled "HTML Special Characters" and is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters causes a hover text box to appear that shows the HTML entity encoding for the character as well as the name of the character.
+Add an admin widget labeled "HTML Special Characters" that is present in the admin Add/Edit Post and Add/Edit Page pages. Clicking on any special character in the widget causes its character encoding to be inserted into the post body text field at the current cursor location (or at the end of the post if the cursor isn't located in the post body field).  Hovering over any of the special characters in the admin widget causes hover text to appear that shows the HTML entity encoding for the character as well as the name of the character.
 
 Note that when used in the visual editor mode the special character itself is added to the post body. Also note that the visual editor has its own special characters popup helper accessible via the advanced toolbar, which depending on your usage, may make this plugin unnecessary for you.  In truth, the plugin is intended more for the non-visual (aka HTML) mode as that is the mode I (the plugin author) use.
 
-Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](http://wordpress.org/extend/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
+Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characters-helper/) | [Plugin Directory Page](https://wordpress.org/plugins/html-special-characters-helper/) | [Author Homepage](http://coffee2code.com)
 
 
 == Installation ==
@@ -28,6 +25,7 @@ Links: [Plugin Homepage](http://coffee2code.com/wp-plugins/html-special-characte
 1. Unzip `html-special-characters-helper.zip` inside the `/wp-content/plugins/` directory (or install via the built-in WordPress plugin installer)
 1. Activate the plugin through the 'Plugins' admin menu in WordPress
 1. An admin widget entitled "HTML Special Characters" will now be present in your write post and write page forms.  Simply click on any character that you would like inserted into your post.
+
 
 == Frequently Asked Questions ==
 
@@ -71,22 +69,26 @@ Arguments:
 Example:
 
 `
-// Add a new grouping of characters (accented 'A's).
-add_filter( 'c2c_html_special_characters', 'more_html_special_characters' );
-function more_html_special_characters( $codes ) {
-	$codes[''] = array(
-		'char_a' => array(
-			'&Agrave;' => 'A grave accent',
-			'&Aacute;' => 'A accute accent',
-			'&Acirc;'  => 'A circumflex',
-			'&Atilde;' => 'A tilde',
-			'&Auml;'   => 'A umlaut',
-			'&Aring;'  => 'A ring',
-			'&AElig;'  => 'AE ligature'
-		)
+/**
+ * Add a new grouping of characters (accented 'A's).
+ *
+ * @param array $characters Default HTML special characters.
+ * @return array
+ */
+function more_html_special_characters( $characters ) {
+	$characters['accented_a'] = array(
+		'name'     => 'Accented A',
+		'&Agrave;' => 'A grave accent',
+		'&Aacute;' => 'A accute accent',
+		'&Acirc;'  => 'A circumflex',
+		'&Atilde;' => 'A tilde',
+		'&Auml;'   => 'A umlaut',
+		'&Aring;'  => 'A ring',
+		'&AElig;'  => 'AE ligature',
 	);
-	return $codes; // Important!
+	return $characters; // Important!
 }
+add_filter( 'c2c_html_special_characters', 'more_html_special_characters' );
 `
 
 = c2c_html_special_characters_post_type (filter) =
@@ -100,16 +102,57 @@ Arguments:
 Example:
 
 `
-// Show HTML Special Characters Helper for additional post_types
-add_filter( 'c2c_html_special_characters_post_types', 'more_html_special_characters_post_types' );
+/**
+ * Show HTML Special Characters Helper for additional post_types.
+ *
+ * @param array $post_types Arry of post types.
+ * @return array
+ */
 function more_html_special_characters_post_types( $post_types ) {
 	$post_types[] = 'products'; // Show for products
 	unset( $post_types['page'] ); // Don't show for pages
 	return $post_types;
 }
+add_filter( 'c2c_html_special_characters_post_types', 'more_html_special_characters_post_types' );
 `
 
 == Changelog ==
+
+= 2.0 (2015-02-15) =
+* Add private `get_default_html_special_characters()` and move characters data array into it (so default data can be directly retrieved)
+* Apply 'c2c_html_special_characters' filter before checking for a category
+* Send value of $category as addition argument to 'c2c_html_special_characters' filter
+* Add 'name' array element to character categories to allow for localized category name labels
+* Increase font size for metabox links and make category labels bold
+* Add unit tests
+* Remove `is_admin()` check that prevented class use outside of admin
+* Cast return value of 'c2c_html_special_characters_helper_post_types' filter as array
+* Use __DIR__ instead of `dirname(__FILE__)`
+* Load textdomain on the frontend as well
+* Use phpDoc formatting for example code in readme
+* Various inline code documentation improvements (spacing, punctuation)
+* Note compatibility through WP 4.1+
+* Update copyright date (2015)
+* Regenerate .pot
+
+= 1.9.3 (2014-08-30) =
+* Minor plugin header reformatting
+* Minor code reformatting (bracing, spacing)
+* Change documentation links to wp.org to be https
+* Note compatibility through WP 4.0+
+* Add plugin icon
+
+= 1.9.2 (2013-12-28) =
+* Note compatibility through WP 3.8+
+* Update copyright date (2014)
+* Minor readme.txt tweaks
+* Change donate link
+
+= 1.9.1 =
+* Add check to prevent execution of code if file is directly accessed
+* Note compatibility through WP 3.5+
+* Update copyright date (2013)
+* Move screenshots into repo's assets directory
 
 = 1.9 =
 * Fix to show HTML entity encoding in tooltip instead of the character
@@ -191,6 +234,18 @@ function more_html_special_characters_post_types( $post_types ) {
 
 
 == Upgrade Notice ==
+
+= 2.0 =
+Recommended update: internal improvements; added unit tests; noted compatibility through WP 4.1+; updated copyright date (2015)
+
+= 1.9.3 =
+Trivial update: noted compatibility through WP 4.0+; added plugin icon.
+
+= 1.9.2 =
+Trivial update: noted compatibility through WP 3.8+
+
+= 1.9.1 =
+Trivial update: noted compatibility through WP 3.5+
 
 = 1.9 =
 Recommended minor update: minor fix to show HTML entity encoding in tooltip instead of the special character itself; minor improvements; noted compatibility through WP 3.4+; explicitly stated license
